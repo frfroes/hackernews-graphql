@@ -1,0 +1,25 @@
+{
+  "name": "hackernews-graphql",
+  "version": "1.0.0",
+  "description": "A semple project that aims to create a hackernoon GraphQL API replica.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/frfroes/hackernews-graphql.git"
+  },
+  "keywords": [
+    "GraphQL",
+    "Apollo",
+    "Node",
+    "Hackernews"
+  ],
+  "author": "Filipe Fróes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/frfroes/hackernews-graphql/issues"
+  },
+  "homepage": "https://github.com/frfroes/hackernews-graphql#readme"
+}
