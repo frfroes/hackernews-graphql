@@ -9,18 +9,33 @@ const links = [{
 const resolvers = {
     Query: {
         info: () => 'This is the API of a Hackernews Replica',
-        feed: () => links,
+        feed: () => links.filter(link => link),
         link: (_, { id }) => links[id]
     },
     Mutation: {
         post: (_, args) => {
            const link = {
-            id: `link-${links.length + 1}`,
+            id: `link-${links.length}`,
             ...args
           }
           links.push(link)
           return link
         },
+        updateLink: (_, args) => {
+            let linkToUpdate = links[args.id]
+            if(linkToUpdate !== null)
+                links[args.id] = {
+                    ...linkToUpdate,
+                    ...args,
+                    id: linkToUpdate.id
+                }
+            return links[args.id]
+         },
+         deleteLink: (_, { id }) => {
+           const removedLink = links[id]
+           links[id] = null
+           return removedLink
+         },
 
     }
 }
