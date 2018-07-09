@@ -1,6 +1,6 @@
 import { GraphQLServer } from "graphql-yoga";
 
-let links = [{
+const links = [{
     id: 'link-0',
     url: 'www.howtographql.com',
     description: 'Fullstack tutorial for GraphQL'
@@ -11,6 +11,16 @@ const resolvers = {
         info: () => 'This is the API of a Hackernews Replica',
         feed: () => links,
     },
+    Mutation: {
+        post: (root, args) => {
+           const link = {
+            id: `link-${links.length + 1}`,
+            ...args
+          }
+          links.push(link)
+          return link
+        }
+    }
 }
 
 const server = new GraphQLServer({
