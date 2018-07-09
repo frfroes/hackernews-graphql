@@ -12,10 +12,12 @@ type Mutation {
     deleteLink(id: ID!): Link
     signup(email: String!, password: String!, name: String!): AuthPayload
     login(email: String!, password: String!): AuthPayload
+    vote(linkId: ID!): Vote
 }
 
 type Subscription {
-  newLink: LinkSubscriptionPayload
+  newLink: LinkSubscriptionPayload,
+  newVote: VoteSubscriptionPayload
 }
 
 type AuthPayload {

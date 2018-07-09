@@ -50,10 +50,35 @@ const updateLink = (_, { id, data }, context, info) => context.db.mutation.updat
 
 const deleteLink = (_, { id }, context, info) => context.db.mutation.deleteLink({ where: { id } }, info)
 
+//Vote
+const vote = async (parent, { linkId }, context, info) => {
+    const userId = getUserId(context)
+  
+    const linkExists = await context.db.exists.Vote({
+      user: { id: userId },
+      link: { id: linkId },
+    })
+
+    if (linkExists) {
+      throw new Error(`Already voted for link: ${linkId}`)
+    }
+  
+    return context.db.mutation.createVote(
+      {
+        data: {
+          user: { connect: { id: userId } },
+          link: { connect: { id: linkId } },
+        },
+      },
+      info,
+    )
+  }
+
 export const Mutation = {
     signup,
     login,
     postLink,
     updateLink,
     deleteLink,
+    vote,
 }

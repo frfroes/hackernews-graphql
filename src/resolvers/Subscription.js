@@ -1,14 +1,9 @@
-const newLinkSubscribe = (_, __, context, info) => {
-    return context.db.subscription.link(
-      { where: { mutation_in: ['CREATED'] } },
-      info,
-    )
-}
+//Links
+const newVoteSubscribe = (_, __, context, info) => context.db.subscription.vote({ where: { mutation_in: ['CREATED'] } }, info)
 
-const newLink = {
-    subscribe: newLinkSubscribe
-}
+const newLinkSubscribe = (_, __, context, info) => context.db.subscription.link({ where: { mutation_in: ['CREATED'] } }, info)
 
 export const Subscription = {
-    newLink,
+    newVote: { subscribe: newVoteSubscribe },
+    newLink: { subscribe: newLinkSubscribe },
 }
