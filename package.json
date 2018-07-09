@@ -26,7 +26,8 @@
   },
   "homepage": "https://github.com/frfroes/hackernews-graphql#readme",
   "dependencies": {
-    "graphql-yoga": "^1.14.12"
+    "graphql-yoga": "^1.14.12",
+    "prisma-binding": "^2.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

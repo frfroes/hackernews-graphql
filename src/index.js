@@ -1,49 +1,37 @@
 import { GraphQLServer } from "graphql-yoga";
-
-const links = [{
-    id: 'link-0',
-    url: 'www.howtographql.com',
-    description: 'Fullstack tutorial for GraphQL'
-}]
+import { Prisma } from "prisma-binding";
 
 const resolvers = {
     Query: {
         info: () => 'This is the API of a Hackernews Replica',
-        feed: () => links.filter(link => link),
-        link: (_, { id }) => links[id]
+        feed: (_, __, context, info) => context.db.query.links({}, info),
+        link: (_, { id }, context, info) => {
+            return context.db.query.link({where: { id }}, info)
+        }
     },
     Mutation: {
-        post: (_, args) => {
-           const link = {
-            id: `link-${links.length}`,
-            ...args
-          }
-          links.push(link)
-          return link
+        post: (_, { data }, context, info) => context.db.mutation.createLink({ data }, info),
+        updateLink: (_, { id, data }, context, info) => {
+            return context.db.mutation.updateLink({ where: { id: id }, data }, info)
         },
-        updateLink: (_, args) => {
-            let linkToUpdate = links[args.id]
-            if(linkToUpdate !== null)
-                links[args.id] = {
-                    ...linkToUpdate,
-                    ...args,
-                    id: linkToUpdate.id
-                }
-            return links[args.id]
-         },
-         deleteLink: (_, { id }) => {
-           const removedLink = links[id]
-           links[id] = null
-           return removedLink
-         },
-
+        deleteLink: (_, { id }, context, info) => {
+            return context.db.mutation.deleteLink({ where: { id } }, info)
+        }
     }
 }
 
 const server = new GraphQLServer({
     typeDefs: './src/schema.graphql',
-    resolvers
-})
+    resolvers,
+    context: req => ({
+        ...req,
+        db: new Prisma({
+            typeDefs: 'src/generated/prisma.graphql',
+            endpoint: process.env.PRISMA_URL,
+            debug: true,
+        }),
+    })
+});
 
 server.start(() => {
     console.log("Server is running on http://localhost:4000");
