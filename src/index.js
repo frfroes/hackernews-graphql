@@ -10,16 +10,18 @@ const resolvers = {
     Query: {
         info: () => 'This is the API of a Hackernews Replica',
         feed: () => links,
+        link: (_, { id }) => links[id]
     },
     Mutation: {
-        post: (root, args) => {
+        post: (_, args) => {
            const link = {
             id: `link-${links.length + 1}`,
             ...args
           }
           links.push(link)
           return link
-        }
+        },
+
     }
 }
 
