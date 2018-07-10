@@ -4,7 +4,9 @@ A sample project written in node that aims to implement a GraphQL server of a [h
 
 This project is fully based on the GraphQL Node [tutorial](https://www.howtographql.com/graphql-js/0-introduction/) written by [Maria Belllo](https://github.com/mairatma) for the [howtographql.com](https://www.howtographql.com/).
 
-## Setup
+You can check out the final result [**here**](https://hackernews-graphql.herokuapp.com/) or download to your local machine and setting up manually.
+
+## Manual Setup
 First, clone the repo to your local machine, go to the root folder  and install the local dependencies with `npm install`.
 
 ### Setting up Prisma
