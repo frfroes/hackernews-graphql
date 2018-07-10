@@ -5,12 +5,10 @@ A sample project written in node that aims to implement a GraphQL server of a [h
 This project is fully based on the GraphQL Node [tutorial](https://www.howtographql.com/graphql-js/0-introduction/) written by [Maria Belllo](https://github.com/mairatma) for the [howtographql.com](https://www.howtographql.com/).
 
 ## Setup
-First, clone the repo to your local machine, go to the root folder  and install the local dependencies with `npm install`.  After that install the two required global dependencies, the [graphql-cli](https://github.com/graphql-cli/graphql-cli) and [prisma](https://github.com/prismagraphql/prisma) packages:
-
-    npm install -g graphql-cli prisma
+First, clone the repo to your local machine, go to the root folder  and install the local dependencies with `npm install`.
 
 ### Setting up Prisma
-Now you are able to configure the database GraphQL server using the  prisma CLI running `prisma deploy`from the root folder. After that the CLI will give some options to choose from. 
+Now you are able to configure the database GraphQL server using the  prisma CLI running `npm run deploy-prisma`from the root folder. After that the CLI will give some options to choose from. 
 From this point you can setup Prisma in any way you like, but if you want this done quickly just do the fallowing: 
 
  - choose **Demo Server** from the CLI options
