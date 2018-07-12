@@ -10,7 +10,7 @@ You can check out the final result [**here**](https://hackernews-graphql.herokua
 First, clone the repo to your local machine, go to the root folder  and install the local dependencies with `npm install`.
 
 ### Setting up Prisma
-Now you are able to configure the database GraphQL server using the  prisma CLI running `npm run deploy-prisma`from the root folder. After that the CLI will give some options to choose from. 
+Now you are able to configure the database GraphQL server using the  prisma CLI running `npm run deploy-prisma` from the root folder. After that the CLI will give some options to choose from. 
 From this point you can setup Prisma in any way you like, but if you want this done quickly just do the fallowing: 
 
  - choose **Demo Server** from the CLI options

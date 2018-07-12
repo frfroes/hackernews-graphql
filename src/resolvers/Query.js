@@ -8,9 +8,9 @@ const feed = async (_, { filter, skip, first, orderBy }, context, info) =>{
           { description_contains: filter },
         ],
       }
-    
-      const queriedLinks = await context.db.query.links({ where, skip, first, orderBy }, `{ id }`)
 
+      const queriedLinks = await context.db.query.links({ where, skip, first }, `{ id }`)
+      
       const linksConnection = await context.db.query.linksConnection({}, `
         {
             aggregate {
@@ -18,8 +18,9 @@ const feed = async (_, { filter, skip, first, orderBy }, context, info) =>{
             }
         }
       `)
-
+      
       return {
+        orderBy: orderBy,
         count: linksConnection.aggregate.count,
         linkIds: queriedLinks.map(link => link.id),
       }
